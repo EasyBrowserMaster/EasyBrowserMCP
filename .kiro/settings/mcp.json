@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "easybrowser": {
+      "command": "node",
+      "args": ["E:/MyProject/EasyBrowserMCP/src/server-v3.js"]
+    }
+  }
+}
