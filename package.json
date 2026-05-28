@@ -8,8 +8,7 @@
   },
   "scripts": {
     "start": "node src/server.js",
-    "start:http": "node src/server.js --port=8931",
-    "test:smoke": "node tests/test-single-env.js"
+    "start:http": "node src/server.js --port=8931"
   },
   "files": [
     "cli.js",

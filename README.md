@@ -194,7 +194,6 @@ browser_tabs(env_id="kwda8264@hotmail.com", action="list")
 npm install
 npm start
 npm run start:http
-npm run test:smoke
 ```
 
 ## 发布前检查
