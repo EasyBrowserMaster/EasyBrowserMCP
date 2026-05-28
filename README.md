@@ -1,6 +1,12 @@
 # EasyBrowser MCP
 
-把 [EasyBrowser](https://easybrowser.pages.dev/) 指纹浏览器能力通过 MCP 协议暴露给 AI 工具。安装后，Claude Code、Cursor、Kiro、Cline、Windsurf 等支持 MCP 的客户端可以直接通过自然语言管理环境、切换标签页、读取页面结构并执行浏览器操作。
+把 [EasyBrowser](https://easybrowser.pages.dev/) 指纹浏览器能力通过 MCP 协议暴露给 AI 工具，并结合 [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright) 的 CDP 接管与页面自动化能力。安装后，Claude Code、Cursor、Kiro、Cline、Windsurf 等支持 MCP 的客户端可以直接通过自然语言管理环境、切换标签页、读取页面结构并执行浏览器操作。
+
+如果你想了解 EasyBrowser 浏览器本身的详细能力、架构和使用场景，可以查看：
+
+- [EasyBrowser 浏览器详细介绍](https://easybrowsermaster.github.io/)
+
+当前 MCP 中所有基于浏览器页面的操作能力，都是通过 Patchright 接管浏览器实例后完成的。
 
 ## 核心能力
 
@@ -9,6 +15,7 @@
 - **标签页管理**：列出、新建、关闭、切换当前环境的标签页
 - **页面结构快照**：通过 `browser_snapshot` 获取无障碍快照和元素 `ref`
 - **浏览器操作**：点击、输入、悬停、按键、滚动、导航、截图、执行 JS
+- **Patchright 接管能力**：通过 CDP 接入浏览器实例，复用 Patchright 的页面自动化和调试能力
 - **调试能力**：查看控制台消息、网络请求、运行 Patchright 风格代码
 - **2FA 集成**：读取环境绑定的 TOTP 验证码
 
@@ -77,6 +84,7 @@ HTTP 模式下多个客户端共享同一个服务进程，因此也共享同一
 
 安装完成后，你可以直接对 Claude 说：
 
+- “介绍一下 EasyBrowser 浏览器的核心优势”
 - “列出 EasyBrowser 里的环境”
 - “打开环境 fb-yanghao”
 - “在环境 fb-yanghao 里新开一个标签页到 https://example.com”
@@ -107,6 +115,7 @@ HTTP 模式下多个客户端共享同一个服务进程，因此也共享同一
 
 | Tool | 说明 | 参数 |
 |------|------|------|
+| `easybrowser_about` | 介绍 EasyBrowser 浏览器的核心优势与适用场景 | — |
 | `env_list` | 列出 EasyBrowser 中的环境 | `name?` `tag?` `page?` `page_size?` |
 | `env_list_running` | 列出 EasyBrowser 中当前正在运行的环境 | — |
 | `env_sessions` | 列出 MCP 当前追踪的环境会话 | — |

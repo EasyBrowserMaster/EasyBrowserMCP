@@ -382,6 +382,57 @@ function fail(error) {
 const server = new McpServer({ name: 'easybrowser', version: '6.0.0' });
 
 server.tool(
+  'easybrowser_about',
+  '介绍 EasyBrowser 浏览器的核心优势和适用场景。',
+  {},
+  async () => ok(
+    [
+      'EasyBrowser',
+      '🚧 即将发布，内测中 — 如需内测资格，请联系我们 https://t.me/easydev001',
+      '',
+      '基于定制 Chromium 的页签级隔离指纹浏览器，专为自动化场景设计。',
+      '',
+      '核心优势：',
+      '- 直击自动化三大痛点：内存消耗、流量消耗、机器人检测与指纹检测。',
+      '- 一个浏览器实例即可运行多个完全隔离的容器（Tab），并发无需多开浏览器。',
+      '',
+      '容器设计：',
+      '- 一个 Tab 对应一个容器，Tab 可随时切换容器。',
+      '- 每个容器独立指纹、Cookie、代理，互不干扰。',
+      '- 并发只需一个浏览器实例，大幅节省系统资源。',
+      '',
+      '容器功能：',
+      '- 指纹隔离：CPU、内存、语言、语音列表、时区、WebRTC、WebGL、Canvas、Audio、Worker 等。',
+      '- 指纹防检测：可通过 Browserscan、CreepJS、Pixelscan 等主流指纹检测网站。',
+      '',
+      '先进防检测技术：',
+      '- JS / Intl / HTTP / Worker 多端一致性处理。',
+      '- Canvas 渲染层处理：空白检测、噪音检测、多 API 一致性检测。',
+      '- Audio 内核特征检测。',
+      '- CSS API 检测。',
+      '- Cookie / LocalStorage / IndexedDB 隔离。',
+      '- 同一浏览器多个 Tab 运行多个账号，数据完全隔离。',
+      '',
+      '代理隔离：',
+      '- 多 Tab 可设置不同代理，每个容器独立出口 IP。',
+      '',
+      '资源节省：',
+      '- 节省流量：浏览器缓存共享，多容器共享静态文件缓存，相同资源只下载一次。',
+      '- 源码级代理 Bypass：基于 Chromium 源码级改造，支持自定义 bypass 规则，静态资源直连不走代理，大幅降低代理流量消耗。',
+      '- 节省内存：相比传统多实例并发方案，多 Tab 架构至少节省内存 30%+。',
+      '',
+      '当前 MCP 说明：',
+      '- 当前 MCP 通过 EasyBrowser Local API 管理环境与标签页。',
+      '- 所有基于浏览器页面的操作能力，都是通过 Patchright 接管浏览器实例后完成的。',
+      '',
+      '详细介绍：',
+      '- 产品官网：https://easybrowser.pages.dev/',
+      '- 浏览器详细说明：https://easybrowsermaster.github.io/'
+    ].join('\n')
+  )
+);
+
+server.tool(
   'env_list',
   '列出 EasyBrowser 中所有指纹浏览器环境（返回 env_id、名称、标签、代理）',
   {
