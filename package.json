@@ -4,16 +4,19 @@
   "description": "MCP Server for EasyBrowser fingerprint browser automation. Use in Kiro, Claude, Cursor, Cline, Windsurf, etc.",
   "main": "src/server.js",
   "bin": {
-    "easybrowser-mcp": "src/server.js"
+    "easybrowser-mcp": "cli.js"
   },
   "scripts": {
     "start": "node src/server.js",
-    "start:http": "node src/server.js --port=8931"
+    "start:http": "node src/server.js --port=8931",
+    "test:smoke": "node tests/test-single-env.js"
   },
   "files": [
+    "cli.js",
     "src/server.js",
     "src/easybrowser-client.js",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "keywords": [
     "mcp",
@@ -30,7 +33,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/EasyBrowserMCP.git"
+    "url": "https://github.com/EasyBrowserMaster/EasyBrowser-MCP.git"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.12.1",
