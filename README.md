@@ -26,22 +26,62 @@
 - EasyBrowser Local API 可访问，默认地址为 `http://127.0.0.1:50325`
 - Local API 属于 EasyBrowser VIP 功能
 
-## 安装到 Claude Code
+## 安装方式
 
-发布后推荐直接使用 `npx` 安装：
+### 先直接测试 MCP 是否能启动
+
+发布到 npm 后，推荐先直接运行一次，确认本机环境没问题：
 
 ```bash
-claude mcp add easybrowser npx -y easybrowser-mcp
+npx -y easybrowser-mcp@latest
 ```
 
-如果需要指定 EasyBrowser Local API 地址，可以在 MCP 配置中添加环境变量：
+看到类似下面输出，说明 MCP 已正常以 stdio 模式启动：
+
+```text
+EasyBrowser MCP Server (stdio) ready.
+```
+
+### Claude Code
+
+Claude Code 支持直接通过命令注册 MCP。注意 `npx` 前要加 `--`，这样后面的参数才会传给 `npx`，不会被 `claude` 自己解析。
+
+```bash
+claude mcp add easybrowser --scope user -- npx -y easybrowser-mcp@latest
+```
+
+删除命令：
+
+```bash
+claude mcp remove easybrowser --scope user
+```
+
+如果你是从当前项目目录以 local scope 添加的，则删除时应使用：
+
+```bash
+claude mcp remove easybrowser --scope local
+```
+
+如果需要指定 EasyBrowser Local API 地址：
+
+```bash
+claude mcp add easybrowser --scope user -e EASYBROWSER_URL=http://127.0.0.1:50325 -- npx -y easybrowser-mcp@latest
+```
+
+说明：Claude Code 会在启动时尝试连接已注册的 MCP。若 EasyBrowser 本地环境启动较慢，可能会让 Claude 打开后多等待几秒才能输入。遇到这种情况，建议按需添加，用完后移除。
+
+### Kiro / Cursor / Cline / Windsurf / 其他配置型客户端
+
+这类客户端通常也支持 `npx` 启动 MCP，但很多没有像 Claude Code 那样的 `mcp add` 命令，因此一般通过配置文件或设置界面注册。
+
+可使用下面的通用配置：
 
 ```json
 {
   "mcpServers": {
     "easybrowser": {
       "command": "npx",
-      "args": ["-y", "easybrowser-mcp"],
+      "args": ["-y", "easybrowser-mcp@latest"],
       "env": {
         "EASYBROWSER_URL": "http://127.0.0.1:50325"
       }
@@ -50,12 +90,24 @@ claude mcp add easybrowser npx -y easybrowser-mcp
 }
 ```
 
-## 本地开发接入
+核心点只有三个：
 
-如果你是仓库开发者，也可以直接通过源码运行：
+- `command` 使用 `npx`
+- `args` 使用 `-y` 和 npm 包名
+- 默认走 stdio 模式，不需要额外加 `--port`
+
+### 本地开发接入
+
+如果你是仓库开发者，也可以直接通过源码运行当前项目：
 
 ```bash
-claude mcp add easybrowser node F:/MyProject/EasyBrowserMCP/src/server.js
+claude mcp add easybrowser --scope local -- node F:/MyProject/EasyBrowserMCP/src/server.js
+```
+
+如果要传环境变量：
+
+```bash
+claude mcp add easybrowser --scope local -e EASYBROWSER_URL=http://127.0.0.1:50325 -- node F:/MyProject/EasyBrowserMCP/src/server.js
 ```
 
 ## 启动方式
@@ -212,7 +264,8 @@ npm run start:http
 - `package.json` 中的 `repository.url` 已改成真实仓库地址
 - `name` 是最终 npm 包名
 - `version` 正确
-- `claude mcp add easybrowser npx -y easybrowser-mcp` 能跑通
+- `npx -y easybrowser-mcp@latest` 能正常启动
+- `claude mcp add easybrowser --scope user -- npx -y easybrowser-mcp@latest` 能跑通
 
 ## License
 

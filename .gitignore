@@ -5,3 +5,4 @@ tests/*.png
 
 # nurture 是业务应用，含私人配置（env_id、IP、API key），不纳入发布
 nurture/
+/npm_recovery_codes.txt
