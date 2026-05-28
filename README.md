@@ -1,6 +1,6 @@
 # EasyBrowser MCP
 
-把 [EasyBrowser](https://easybrowser.net) 指纹浏览器能力通过 MCP 协议暴露给 AI 工具。安装后，Claude Code、Cursor、Kiro、Cline、Windsurf 等支持 MCP 的客户端可以直接通过自然语言管理环境、切换标签页、读取页面结构并执行浏览器操作。
+把 [EasyBrowser](https://easybrowser.pages.dev/) 指纹浏览器能力通过 MCP 协议暴露给 AI 工具。安装后，Claude Code、Cursor、Kiro、Cline、Windsurf 等支持 MCP 的客户端可以直接通过自然语言管理环境、切换标签页、读取页面结构并执行浏览器操作。
 
 ## 核心能力
 
